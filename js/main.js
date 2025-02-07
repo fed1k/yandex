@@ -28,7 +28,7 @@ function radioChecked(btn, page) {
       setTimeout(() => {
 
         page += 1
-        moveToLastQuestion()
+        moveToLastQuestion(page)
       }, 300)
 
     })
@@ -52,9 +52,9 @@ function radioChecked(btn, page) {
 
 document.addEventListener('DOMContentLoaded', () => {
   let startBtn = document.querySelector('.start-page__button')
-
+  let lastPage = document.querySelector('.last__page')
   let pageNavbar = document.querySelector('.page__navbar')
-
+  let form = document.querySelector('form')
   let nextBtn = document.querySelector('.next__btn')
   let preeBtn = document.querySelector('.pree__btn')
 
@@ -79,20 +79,21 @@ document.addEventListener('DOMContentLoaded', () => {
     nextBtn.removeAttribute("disabled")
   })
 
-  
-  
+  form.addEventListener('submit', (e)=>{
+    e.preventDefault();
+    lastPage.classList.add('list__active')
+  })
+
   nextBtn.addEventListener('click', () => {
-    if (startPageBg) {
-      
-    }
     page++
     console.log(page)
     document.querySelector("form").addEventListener("submit", (e) => {
       e.preventDefault();
-      moveToFinalScreen()
+      moveToFinalScreen();
     })
     if (page == 2) {
-      moveToLastQuestion(page)
+      moveToLastQuestion(page);
+      page++;
     }
     if (page == 3) {
       nextBtn.setAttribute('disabled', 'disabled');
@@ -153,7 +154,7 @@ function moveToLastQuestion(page) {
   setTimeout(() => queastionsfirst.style.display = 'none', 500);
   setTimeout(() => queastionsSecond.style.display = 'inline-block', 500);
   let progressLine = document.querySelectorAll('.linear__field>span')
-  progressLine[1].style.width = "50%"  
+  progressLine[1].style.width = "50%"
 }
 
 function moveToFinalScreen () {

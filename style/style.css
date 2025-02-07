@@ -54,6 +54,11 @@
   cursor: pointer;
 }
 
+#app {
+  width: 100%;
+  overflow-x: hidden;
+}
+
 .page {
   width: 100vw;
   height: 100vh;
@@ -608,4 +613,29 @@
 
 .pree__btn.disabled {
   cursor: not-allowed;
+}
+
+.last__page {
+  /* transform: translateX(120%); */
+  display: flex;
+  background-color: rgba(74, 74, 70, 0);
+  color: rgba(74, 74, 70, 0);
+  align-items: center;
+  justify-content: center;
+  transition: background-color ease-in-out 1.5s, color ease-in-out 1.5s;
+  z-index: -5;
+}
+
+.header {
+  margin: auto;
+}
+
+.last__page .start-page__text{
+  margin: auto;
+}
+
+.list__active {
+  background-color: rgba(74, 74, 70, 1);
+  color: #fff;
+  z-index: 1;
 }
