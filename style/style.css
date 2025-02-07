@@ -13,7 +13,17 @@
 }
 
 .over {
-  transform: rotateY(90deg) translateX(150%);
+  transform: translateX(-4%);
+  animation: fade 0.5s;
+}
+
+@keyframes fade {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
 }
 
 .hide {
@@ -333,7 +343,8 @@
   height: 43px;
   width: 43px;
   border-radius: 50%;
-  background-color: #64645e;
+  border: 1px solid #64645e;
+  background-color: transparent;
 }
 
 .btn__text {
@@ -352,8 +363,8 @@
 }
 
 .mdi-icon {
-  width: 20px;
-  fill: #4a4a46;
+  width: 24px;
+  fill: #64645e;
 }
 
 .checkbox {
@@ -452,6 +463,7 @@
 .final__page-text {
   border-radius: 4px;
   background: none;
+  outline: none;
 }
 
 .input__block {
@@ -469,12 +481,12 @@
 }
 
 .input__block svg {
-  width: 20px;
-  height: 20px;
+  width: 24px;
+  height: 24px;
   position: absolute;
-  left: 20px;
-  top: 25%;
-  fill: #71716a;
+  left: 16px;
+  top: 30%;
+  fill: rgb(219, 219, 219, 0.5);
 }
 
 .final__checkbox {
@@ -592,4 +604,8 @@
 
 .questions__wrapper {
   padding-top: 10px;
+}
+
+.pree__btn.disabled {
+  cursor: not-allowed;
 }

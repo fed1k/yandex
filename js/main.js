@@ -1,4 +1,4 @@
-function radioChecked(btn) {
+function radioChecked(btn, page) {
   let answerBlock = document.querySelectorAll('.answer__block')
   let check = document.querySelectorAll('.check')
   let checkSpan = document.querySelectorAll('.check>span')
@@ -25,6 +25,12 @@ function radioChecked(btn) {
           answerBlock[j].classList.remove('answer__block-active')
         }
       }
+      setTimeout(() => {
+
+        page += 1
+        moveToLastQuestion()
+      }, 300)
+
     })
   }
 
@@ -46,15 +52,8 @@ function radioChecked(btn) {
 
 document.addEventListener('DOMContentLoaded', () => {
   let startBtn = document.querySelector('.start-page__button')
-  let pages = document.querySelectorAll('.page')
-  let logoBlock = document.querySelector('.logo__block')
-  let startPageHeader = document.querySelector('.start-page__header')
-  let startPageText = document.querySelector('.start-page__text')
-  let startPageBg = document.querySelector('.start-page__layer')
-  let startPpageContent = document.querySelector('.start-page__content')
+
   let pageNavbar = document.querySelector('.page__navbar')
-
-
 
   let nextBtn = document.querySelector('.next__btn')
   let preeBtn = document.querySelector('.pree__btn')
@@ -65,50 +64,35 @@ document.addEventListener('DOMContentLoaded', () => {
 
   let page = 1
 
-  // console.log(page)
-
   queastionsSecond.style.display = 'none'
 
-  startBtn.addEventListener('click', () => {
-    // console.log(page)
-    logoBlock.style.transform = "translateY(-100%)";
-    startPageHeader.classList.add('hide');
-    startPageText.classList.add('hide');
-    startBtn.classList.add('hide');
-    startPageBg.classList.add('black');
-    startPpageContent.style.border = 'none'
-    setTimeout(() => {
-      pages[0].style.display = 'none'
-      let answerBlock = document.querySelectorAll('.questions__wrapper')
-      answerBlock[0].classList.add("fade-left")
-    }, 1000);
+  startBtn.addEventListener('click', () => moveToFirstQuestion(page))
+
+  radioChecked(nextBtn, page)
+
+  preeBtn.addEventListener("click", () => {
+    page = 1
+    nextBtn.textContent = 'Далее';
+    queastionsfirst.classList.remove('over');
+    queastionsSecond.style.display = "none"
+    queastionsfirst.style.display = "block"
+    nextBtn.removeAttribute("disabled")
   })
 
-  radioChecked(nextBtn)
-
-
+  
+  
   nextBtn.addEventListener('click', () => {
     if (startPageBg) {
       
     }
     page++
+    console.log(page)
     document.querySelector("form").addEventListener("submit", (e) => {
       e.preventDefault();
-      console.log("HEHE stopped it")
+      moveToFinalScreen()
     })
     if (page == 2) {
-      const progressPercent = document.querySelector(".progress-percent");
-      progressPercent.textContent = "50%"
-      nextBtn.setAttribute('disabled', 'disabled');
-      nextBtn.innerHTML = 'Последний шаг';
-      preeBtn.removeAttribute('disabled');
-      preeBtn.classList.remove('disabled');
-      queastionsfirst.classList.add('over');
-
-      setTimeout(() => queastionsfirst.style.display = 'none', 1000);
-      setTimeout(() => queastionsSecond.style.display = 'inline-block', 1000);
-      let progressLine = document.querySelectorAll('.linear__field>span')
-      progressLine[1].style.width = "50%"
+      moveToLastQuestion(page)
     }
     if (page == 3) {
       nextBtn.setAttribute('disabled', 'disabled');
@@ -116,11 +100,65 @@ document.addEventListener('DOMContentLoaded', () => {
       queastionsSecond.classList.add('over');
       finalPage.style.left = '0';
       pageNavbar.style.display = 'none';
+      const phoneNumberInput = document.getElementById("phone-number")
       var im = new Inputmask("+7 (999) 999-99-99");
-      im.mask(document.getElementById("phone-number"));
+      im.mask(phoneNumberInput);
+      setTimeout(() => {
+
+        phoneNumberInput.focus()
+      }, 600)
+
     }
   })
 })
+
+function moveToFirstQuestion(page) {
+  page = 1
+  let startBtn = document.querySelector('.start-page__button')
+  let pages = document.querySelectorAll('.page')
+  let logoBlock = document.querySelector('.logo__block')
+  let startPageHeader = document.querySelector('.start-page__header')
+  let startPageText = document.querySelector('.start-page__text')
+  let startPageBg = document.querySelector('.start-page__layer')
+  let startPpageContent = document.querySelector('.start-page__content')
+  logoBlock.style.transform = "translateY(-100%)";
+  startPageHeader.classList.add('hide');
+  startPageText.classList.add('hide');
+  startBtn.classList.add('hide');
+  startPageBg.classList.add('black');
+  startPpageContent.style.border = 'none'
+  setTimeout(() => {
+    pages[0].style.display = 'none'
+    let answerBlock = document.querySelectorAll('.questions__wrapper')
+    answerBlock[0].classList.add("fade-left")
+  }, 1000);
+}
+
+function moveToLastQuestion(page) {
+  page = 2
+  let nextBtn = document.querySelector('.next__btn')
+  let preeBtn = document.querySelector('.pree__btn')
+
+  let queastionsfirst = document.querySelector('.queastions__first')
+  let queastionsSecond = document.querySelector('.queastions__second')
+  const progressPercent = document.querySelector(".progress-percent");
+  progressPercent.textContent = "50%"
+  nextBtn.setAttribute('disabled', 'disabled');
+  nextBtn.textContent = 'Последний шаг';
+  preeBtn.removeAttribute('disabled');
+  preeBtn.classList.remove('disabled');
+  preeBtn.children[0].style.fill = "rgb(255, 255, 255, 60%)"
+  queastionsfirst.classList.add('over');
+
+  setTimeout(() => queastionsfirst.style.display = 'none', 500);
+  setTimeout(() => queastionsSecond.style.display = 'inline-block', 500);
+  let progressLine = document.querySelectorAll('.linear__field>span')
+  progressLine[1].style.width = "50%"  
+}
+
+function moveToFinalScreen () {
+  console.log("Final")
+}
 
 
 
