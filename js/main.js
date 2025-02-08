@@ -9,7 +9,8 @@ function radioChecked(btn, page) {
   for (let i = 0; i < 4; i++) {
     let radio = answerInput[i];
     radio.addEventListener('click', () => {
-      console.log("clicked")
+      const price = radio.parentElement.querySelector(".control-label").textContent
+      sessionStorage.setItem("price", price)
       btn.removeAttribute('disabled');
       progress[1].innerHTML = '50%';
       progressLine.style.width = '50%';
@@ -87,9 +88,33 @@ document.addEventListener('DOMContentLoaded', () => {
     e.preventDefault();
     const phoneNumberInput = document.getElementById("phone-number")
     const isPhoneNumberFilled = phoneNumberInput.value.replace(/(?!^\+)\D/g, '').length === 12 ? true : false
+    // console.log()
+    const checkboxes = document.querySelectorAll(".b-radio > input[type='checkbox']:checked")
+    // console.log(checkboxes)
+    let importantThings = ""
+    checkboxes.forEach((el) => {
 
+      importantThings += el.nextElementSibling.nextElementSibling.textContent + ","
+    })
+    console.log(importantThings)
+    // const values = checkboxes.map((el) => el.nextElementSibling.nextElementSibling.textContent);
+    // console.log(values)
     if (isPhoneNumberFilled) {
+      queastionsSecond.style.display = 'none'
+      finalPage.style.opacity = '0'
       lastPage.classList.add('list__active')
+      const templateParams = {
+        price: sessionStorage.getItem("price"),
+        importance: importantThings
+      }
+      emailjs.send('service_nh1lqe8', 'template_qsso4ws', templateParams).then(
+        (response) => {
+          console.log('SUCCESS!', response.status, response.text);
+        },
+        (error) => {
+          console.log('FAILED...', error);
+        },
+      );
     }
   })
 
