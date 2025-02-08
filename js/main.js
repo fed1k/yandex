@@ -28,7 +28,8 @@ function radioChecked(btn, page) {
       setTimeout(() => {
 
         page += 1
-        moveToLastQuestion(page)
+        moveToLastQuestion()
+        console.log(page)
       }, 300)
 
     })
@@ -85,15 +86,14 @@ document.addEventListener('DOMContentLoaded', () => {
   })
 
   nextBtn.addEventListener('click', () => {
-    page++
+    page += 1
     console.log(page)
     document.querySelector("form").addEventListener("submit", (e) => {
       e.preventDefault();
       moveToFinalScreen();
     })
     if (page == 2) {
-      moveToLastQuestion(page);
-      page++;
+      moveToLastQuestion();
     }
     if (page == 3) {
       nextBtn.setAttribute('disabled', 'disabled');
@@ -104,8 +104,22 @@ document.addEventListener('DOMContentLoaded', () => {
       const phoneNumberInput = document.getElementById("phone-number")
       var im = new Inputmask("+7 (999) 999-99-99");
       im.mask(phoneNumberInput);
+      
+      phoneNumberInput.addEventListener("input", ({target}) => {
+        target.nextElementSibling.nextElementSibling.classList.add("is-large-inactive")
+        target.style.border = "1px solid #7e7e77"
+        target.style.color = "white"
+      }) 
+      phoneNumberInput.addEventListener("blur", ({target}) => {
+        const isPhoneNumberFilled = target.value.replace(/(?!^\+)\D/g, '').length === 12 ? true : false
+        if (!isPhoneNumberFilled) {
+          target.nextElementSibling.nextElementSibling.classList.remove("is-large-inactive")
+          target.style.border = "1px solid red"
+          target.style.color = "red"
+        }
+      })
+      
       setTimeout(() => {
-
         phoneNumberInput.focus()
       }, 600)
 
@@ -135,8 +149,7 @@ function moveToFirstQuestion(page) {
   }, 1000);
 }
 
-function moveToLastQuestion(page) {
-  page = 2
+function moveToLastQuestion() {
   let nextBtn = document.querySelector('.next__btn')
   let preeBtn = document.querySelector('.pree__btn')
 

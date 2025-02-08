@@ -485,7 +485,7 @@
   line-height: 22.5px;
 }
 
-.input__block svg {
+.phone-icon {
   width: 24px;
   height: 24px;
   position: absolute;
@@ -638,4 +638,15 @@
   background-color: rgba(74, 74, 70, 1);
   color: #fff;
   z-index: 1;
+}
+
+.is-large {
+  right: 3%;
+  top: 30%;
+  position: absolute;
+  fill: red;
+}
+
+.is-large-inactive {
+  display: none;
 }
