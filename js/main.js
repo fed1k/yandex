@@ -45,8 +45,8 @@ function radioChecked(btn, page) {
       progress[1].innerHTML = '95%';
       progressLine.style.width = '95%';
 
-      check[i].classList.toggle('checkbox__active')
-      checkSpan[i].classList.toggle('checkbox__span-active')
+      // check[i].classList.toggle('checkbox__active')
+      // checkSpan[i].classList.toggle('checkbox__span-active')
       answerBlock[i].classList.toggle('answer__block-active')
 
     })

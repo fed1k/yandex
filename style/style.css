@@ -376,19 +376,38 @@
   width: 20px;
   height: 20px;
   border-radius: 15%;
+  display: block;
+  overflow: hidden;
+}
+
+.checkbox::after {
+  content: '';
+  display: block;
+  position: relative;
+  top: -40px;
+  left: -20px;
+  background-color: #f5cc00;
+  width: 20px;
+  height: 20px;
+  transition: top ease-in-out .5s;
 }
 
 .checkbox span {
   border-radius: 15%;
   border: none;
-}
-
-.checkbox__active {
-  background-color: #ffdd29;
-}
-
-.checkbox__span-active {
   background: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'%3E%3Cpath style='fill:%23fff' d='M.04.627.146.52.43.804.323.91zm.177.177L.854.167.96.273.323.91z'/%3E%3C/svg%3E") no-repeat 50%;
+  background-position: -20px;
+  transition: background-position ease-in-out .5s;
+}
+
+.answer__input:checked + .checkbox::after {
+  top: -20px;
+  left: 0;
+}
+
+.answer__input:checked + .checkbox>span {
+  background-position: 0;
+  z-index: 1;
 }
 
 .final__page {
@@ -485,7 +504,7 @@
   line-height: 22.5px;
 }
 
-.phone-icon {
+.input__block svg {
   width: 24px;
   height: 24px;
   position: absolute;
@@ -638,15 +657,4 @@
   background-color: rgba(74, 74, 70, 1);
   color: #fff;
   z-index: 1;
-}
-
-.is-large {
-  right: 3%;
-  top: 30%;
-  position: absolute;
-  fill: red;
-}
-
-.is-large-inactive {
-  display: none;
 }
