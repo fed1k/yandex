@@ -5,10 +5,12 @@ function radioChecked(btn, page) {
   let answerInput = document.querySelectorAll('.answer__input')
   let progress = document.querySelectorAll('.linear__label>span')
   let progressLine = document.querySelector('.linear__field>span')
+  let nextBtn = document.querySelector('.next__btn')
 
   for (let i = 0; i < 4; i++) {
     let radio = answerInput[i];
     radio.addEventListener('click', () => {
+      nextBtn.classList.add("is-blicked")
       const price = radio.parentElement.querySelector(".control-label").textContent
       sessionStorage.setItem("price", price)
       btn.removeAttribute('disabled');
@@ -31,7 +33,8 @@ function radioChecked(btn, page) {
       setTimeout(() => {
         page += 1
         moveToLastQuestion(page)
-        console.log(page)
+        // console.log(page)
+        nextBtn.classList.remove("is-blicked")
 
       }, 300)
 
@@ -42,6 +45,8 @@ function radioChecked(btn, page) {
   for (let i = 4; i < 11; i++) {
     let radio = answerInput[i];
     radio.addEventListener('click', () => {
+      const checkedOnesLength = document.querySelectorAll("input[type='checkbox']:checked").length;
+      checkedOnesLength ? nextBtn.classList.add("is-blicked") : nextBtn.classList.remove("is-blicked") 
       btn.removeAttribute('disabled');
       progress[1].innerHTML = '95%';
       progressLine.style.width = '95%';
