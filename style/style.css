@@ -389,6 +389,7 @@
   background-color: #f5cc00;
   width: 20px;
   height: 20px;
+  transition: top ease-in-out .3s, left ease-in-out .3s;
 }
 
 .checkbox span {
@@ -396,7 +397,7 @@
   border: none;
   background: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'%3E%3Cpath style='fill:%23fff' d='M.04.627.146.52.43.804.323.91zm.177.177L.854.167.96.273.323.91z'/%3E%3C/svg%3E") no-repeat 50%;
   background-position: -20px;
-  transition: background-position;
+  transition: background-position ease-in-out .3s;
 }
 
 .answer__input:checked + .checkbox::after {
