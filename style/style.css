@@ -273,7 +273,12 @@
   font-weight: 500;
   font-style: normal;
   line-height: 20.8px;
+}
+
+.progress__bar span:first-child { 
+  font-weight: 500;
   color: #e8e8e8;
+  font-size: 12px;
 }
 
 .linear__label {
@@ -656,4 +661,10 @@
 .list__active {
   opacity: 1;
   z-index: 1;
+}
+
+.progress-percent {
+  color: #ffdd29;
+  font-weight: 700;
+  font-size: 14px;
 }
