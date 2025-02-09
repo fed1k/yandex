@@ -275,13 +275,14 @@
   line-height: 20.8px;
 }
 
-.progress__bar span:first-child { 
+.progress__bar span:first-child {
   font-weight: 500;
   color: #e8e8e8;
   font-size: 12px;
 }
 
 .linear__label {
+  color: #ffdd29;
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-gap: 10px;
@@ -389,28 +390,29 @@
   content: '';
   display: block;
   position: relative;
-  top: -40px;
-  left: -20px;
+  top: -20px;
   background-color: #f5cc00;
   width: 20px;
   height: 20px;
-  transition: top ease-in-out .3s, left ease-in-out .3s;
+  opacity: 0;
+  transition: opacity ease-in-out .3s;
 }
 
 .checkbox span {
+  opacity: 0;
   border-radius: 15%;
   border: none;
   background: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'%3E%3Cpath style='fill:%23fff' d='M.04.627.146.52.43.804.323.91zm.177.177L.854.167.96.273.323.91z'/%3E%3C/svg%3E") no-repeat 50%;
-  background-position: -20px;
-  transition: background-position ease-in-out .3s;
+  background-position: -6px -6px;
+  transition: background-position ease-in-out .3s, opacity ease-in-out .3s;
 }
 
 .answer__input:checked + .checkbox::after {
-  top: -20px;
-  left: 0;
+  opacity: 1;
 }
 
 .answer__input:checked + .checkbox>span {
+  opacity: 1;
   background-position: 0;
   z-index: 1;
 }

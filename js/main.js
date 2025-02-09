@@ -33,7 +33,6 @@ function radioChecked(btn, page) {
       setTimeout(() => {
         page += 1
         moveToLastQuestion(page)
-        // console.log(page)
         nextBtn.classList.remove("is-blicked")
 
       }, 300)
@@ -46,13 +45,10 @@ function radioChecked(btn, page) {
     let radio = answerInput[i];
     radio.addEventListener('click', () => {
       const checkedOnesLength = document.querySelectorAll("input[type='checkbox']:checked").length;
-      checkedOnesLength ? nextBtn.classList.add("is-blicked") : nextBtn.classList.remove("is-blicked") 
+      checkedOnesLength ? nextBtn.classList.add("is-blicked") : nextBtn.classList.remove("is-blicked")
       btn.removeAttribute('disabled');
       progress[1].innerHTML = '95%';
       progressLine.style.width = '95%';
-
-      // check[i].classList.toggle('checkbox__active')
-      // checkSpan[i].classList.toggle('checkbox__span-active')
       answerBlock[i].classList.toggle('answer__block-active')
 
     })
@@ -67,7 +63,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let form = document.querySelector('form')
   let nextBtn = document.querySelector('.next__btn')
   let preeBtn = document.querySelector('.pree__btn')
-
+  let agree = document.querySelector('#agree')
   let queastionsfirst = document.querySelector('.queastions__first')
   let queastionsSecond = document.querySelector('.queastions__second')
   let finalPage = document.querySelector('.final__page')
@@ -89,21 +85,28 @@ document.addEventListener('DOMContentLoaded', () => {
     nextBtn.removeAttribute("disabled")
   })
 
+
+  agree.addEventListener('click', ()=>{
+    console.log(agree.checked)
+    if (agree.checked) {
+      document.querySelector('.final__btn').removeAttribute('disabled')
+    } else {
+      document.querySelector('.final__btn').setAttribute('disabled', 'disabled')
+    }
+  })
+
   form.addEventListener('submit', (e) => {
     e.preventDefault();
     const phoneNumberInput = document.getElementById("phone-number")
     const isPhoneNumberFilled = phoneNumberInput.value.replace(/(?!^\+)\D/g, '').length === 12 ? true : false
-    // console.log()
     const checkboxes = document.querySelectorAll(".b-radio > input[type='checkbox']:checked")
-    // console.log(checkboxes)
+
     let importantThings = ""
     checkboxes.forEach((el) => {
 
       importantThings += el.nextElementSibling.nextElementSibling.textContent + ","
     })
-    console.log(importantThings)
-    // const values = checkboxes.map((el) => el.nextElementSibling.nextElementSibling.textContent);
-    // console.log(values)
+
     if (isPhoneNumberFilled) {
       queastionsSecond.style.display = 'none'
       finalPage.style.opacity = '0'
@@ -150,7 +153,7 @@ document.addEventListener('DOMContentLoaded', () => {
       phoneNumberInput.addEventListener("blur", ({ target }) => {
         const isPhoneNumberFilled = target.value.replace(/(?!^\+)\D/g, '').length === 12 ? true : false
         if (!isPhoneNumberFilled) {
-          target.nextElementSibling.nextElementSibling.classList.remove("is-large-inactive")
+          target.nextElementSibling?.nextElementSibling?.classList.remove("is-large-inactive")
           target.style.border = "1px solid red"
           target.style.color = "red"
         }
