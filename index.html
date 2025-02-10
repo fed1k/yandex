@@ -132,9 +132,13 @@
             </div>
             <div class="answer__block">
               <label class="b-radio radio">
-                <input type="checkbox" class="answer__input" name="kapital" value="">
-                <span class="check checkbox"><span></span></span>
-                <span class="control-label">Наличие детской и спортивной площадки</span>
+                <div>
+
+                  <input type="checkbox" class="answer__input other-check" name="kapital" value="">
+                  <span class="check checkbox"><span></span></span>
+                </div>
+                <!-- <span class="control-label">Наличие детской и спортивной площадки</span> -->
+                <input class="other-checkbox" type="text" placeholder="Другое...">
               </label>
             </div>
           </div>
@@ -170,7 +174,7 @@
               </label>
               <button type="submit" class="btn final__btn is-blicked" disabled>Получить результаты</button>
               <div class="final__checkbox">
-                <input type="checkbox" name="agree" id="agree">
+                <input checked type="checkbox" name="agree" id="agree">
                 <label for="agree">
                   <span class="control-label">
                     <span></span>

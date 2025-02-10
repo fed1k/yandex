@@ -45,11 +45,29 @@ function radioChecked(btn, page) {
     let radio = answerInput[i];
     radio.addEventListener('click', () => {
       const checkedOnesLength = document.querySelectorAll("input[type='checkbox']:checked").length;
-      checkedOnesLength ? nextBtn.classList.add("is-blicked") : nextBtn.classList.remove("is-blicked")
-      btn.removeAttribute('disabled');
-      progress[1].innerHTML = '95%';
-      progressLine.style.width = '95%';
-      answerBlock[i].classList.toggle('answer__block-active')
+      console.log(checkedOnesLength)
+      if (checkedOnesLength > 1) {
+        const gg = document.querySelectorAll("input[type='checkbox']:checked")
+        // console.log(checkedOnesLength gg)
+        const vl = document.querySelector(".other-checkbox")
+        console.log(vl)
+        if (checkedOnesLength === 2 && gg[0].classList.contains("other-check") && !vl.value) {
+          // gg.forEach((el) => {})
+          nextBtn.classList.remove("is-blicked")
+          btn.setAttribute("disabled", "disabled")
+          return
+        }
+        // console.log(gg.includes)
+        // console.log(gg)
+        nextBtn.classList.add("is-blicked")
+        btn.removeAttribute('disabled');
+        progress[1].innerHTML = '95%';
+        progressLine.style.width = '95%';
+        answerBlock[i].classList.toggle('answer__block-active')
+      } else {
+        nextBtn.classList.remove("is-blicked")
+        btn.setAttribute("disabled", "disabled")
+      }
 
     })
   }
@@ -85,8 +103,12 @@ document.addEventListener('DOMContentLoaded', () => {
     nextBtn.removeAttribute("disabled")
   })
 
-
-  agree.addEventListener('click', ()=>{
+  if (agree.checked) {
+    document.querySelector('.final__btn').removeAttribute('disabled')
+  } else {
+    document.querySelector('.final__btn').setAttribute('disabled', 'disabled')
+  }
+  agree.addEventListener('click', () => {
     console.log(agree.checked)
     if (agree.checked) {
       document.querySelector('.final__btn').removeAttribute('disabled')
@@ -133,6 +155,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     if (page == 2) {
       moveToLastQuestion(page);
+      // console.log("s")
 
     }
     if (page == 3) {
@@ -209,4 +232,25 @@ function moveToLastQuestion(page) {
   setTimeout(() => queastionsSecond.style.display = 'inline-block', 500);
   let progressLine = document.querySelectorAll('.linear__field>span')
   progressLine[1].style.width = "50%"
+
+  const otherInfo = document.querySelector(".other-checkbox")
+  otherInfo.addEventListener("input", (e) => {
+    const previousElementCheckbox = e.target.previousElementSibling.querySelector("input");
+    if (e.target.value) {
+      previousElementCheckbox.checked = true
+      nextBtn.classList.add("is-blicked")
+      nextBtn.removeAttribute("disabled")
+    } else {
+      previousElementCheckbox.checked = false
+      nextBtn.classList.remove("is-blicked")
+      nextBtn.setAttribute("disabled", "disabled")
+    }
+  })
+
+  otherInfo.addEventListener("blur", (e) => {
+    if (!e.target.value) {
+      const previousElementCheckbox = e.target.previousElementSibling.querySelector("input");
+      previousElementCheckbox.checked = false
+    }
+  })
 }

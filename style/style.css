@@ -21,6 +21,7 @@
   from {
     opacity: 1;
   }
+
   to {
     opacity: 0;
   }
@@ -304,7 +305,7 @@
   border-radius: 25px;
   display: inline-block;
   background-image: linear-gradient(90deg, #f5cc00, #ffe45c);
-  box-shadow: inset 0 2px 9px hsla(0,0%,100%,.3),inset 0 -2px 6px rgba(0,0,0,.4),.6px 1.9px 7px 0 rgba(255, 221, 41, 0.5);
+  box-shadow: inset 0 2px 9px hsla(0, 0%, 100%, .3), inset 0 -2px 6px rgba(0, 0, 0, .4), .6px 1.9px 7px 0 rgba(255, 221, 41, 0.5);
   transition: width .5s ease-in-out;
 }
 
@@ -325,12 +326,13 @@
 }
 
 @keyframes move {
-   0% {
+  0% {
     background-position: 0 0;
-   }
-   100% {
+  }
+
+  100% {
     background-position: 20px 20px;
-   }
+  }
 }
 
 .navbar__buttons {
@@ -407,11 +409,11 @@
   transition: background-position ease-in-out .3s, opacity ease-in-out .3s;
 }
 
-.answer__input:checked + .checkbox::after {
+.answer__input:checked+.checkbox::after {
   opacity: 1;
 }
 
-.answer__input:checked + .checkbox>span {
+.answer__input:checked+.checkbox>span {
   opacity: 1;
   background-position: 0;
   z-index: 1;
@@ -563,9 +565,10 @@
 
 .final__checkbox>input:checked+label>.control-label>span:first-child {
   border: 1px solid #f5cc00;
-  background: url('../image/check.png') no-repeat;
+  background-color: #f5cc00;
+  /* background: url('../image/check.png') no-repeat;
   background-size: 60%;
-  background-position: 50%;
+  background-position: 50%; */
 }
 
 .btn.is-blicked:after {
@@ -637,8 +640,13 @@
   padding-top: 10px;
 }
 
-.pree__btn.disabled {
+.pree__btn.disabled,
+button:disabled {
   cursor: not-allowed;
+}
+
+button:disabled {
+  opacity: .7;
 }
 
 .last__page {
@@ -656,7 +664,7 @@
   margin: auto;
 }
 
-.last__page .start-page__text{
+.last__page .start-page__text {
   margin: auto;
 }
 
@@ -670,3 +678,28 @@
   font-weight: 700;
   font-size: 14px;
 }
+
+.other-checkbox {
+  flex: 1;
+  height: 100%;
+  font-size: 14px;
+  background-color: #5c5c57;
+  outline: none;
+  border: none;
+  color: white;
+  padding: calc(.375em - 1px) calc(.625em - 1px);
+}
+
+/* .answer__block:last-child {
+  background-color: #5c5c57;
+}
+
+.answer__block:last-child > .b-radio {
+  padding: 0;
+}
+
+.answer__block:last-child > .b-radio > .check.checkbox {
+  margin: 16px;
+  background-color: #4a4a46;
+} */
+
