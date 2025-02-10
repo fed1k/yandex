@@ -565,10 +565,9 @@
 
 .final__checkbox>input:checked+label>.control-label>span:first-child {
   border: 1px solid #f5cc00;
-  background-color: #f5cc00;
-  /* background: url('../image/check.png') no-repeat;
+  background: url('../image/check.png') #f5cc00 no-repeat;
   background-size: 60%;
-  background-position: 50%; */
+  background-position: 50%;
 }
 
 .btn.is-blicked:after {
@@ -688,18 +687,9 @@ button:disabled {
   border: none;
   color: white;
   padding: calc(.375em - 1px) calc(.625em - 1px);
+  margin: 4px 0;
 }
 
-/* .answer__block:last-child {
-  background-color: #5c5c57;
+.other__block {
+  display: flex;
 }
-
-.answer__block:last-child > .b-radio {
-  padding: 0;
-}
-
-.answer__block:last-child > .b-radio > .check.checkbox {
-  margin: 16px;
-  background-color: #4a4a46;
-} */
-
