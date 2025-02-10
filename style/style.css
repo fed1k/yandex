@@ -687,9 +687,17 @@ button:disabled {
   border: none;
   color: white;
   padding: calc(.375em - 1px) calc(.625em - 1px);
-  margin: 4px 0;
+  margin: 12px 0;
+}
+
+.other-checkbox::placeholder {
+  color: rgba(255, 255, 255, .5);
 }
 
 .other__block {
   display: flex;
+}
+
+.other {
+  padding: 0 0 0 16px;
 }
